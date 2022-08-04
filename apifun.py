@@ -1,11 +1,7 @@
-from lib2to3.pgen2.pgen import DFAState
 import requests
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 import pandas as pd
-
-
-
 
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
@@ -25,10 +21,6 @@ match_id_url = f'https://americas.api.riotgames.com/lol/match/v5/matches/by-puui
 match_ids = requests.get(match_id_url, headers=headers)
 
 valid_games = pd.DataFrame(columns=["match_id","spell1Casts","spell2Casts","spell3Casts","spell4Casts","win","totalHeal"])
-
-# test_match_url = f'https://americas.api.riotgames.com/lol/match/v5/matches/NA1_4391108464'
-
-# test_match = requests.get(test_match_url, headers=headers)
 
 for match_id in match_ids.json():
     print(f"Querying match: {match_id}")
